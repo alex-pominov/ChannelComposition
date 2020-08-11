@@ -2,6 +2,8 @@ package example.domain.decorator;
 
 import example.domain.Attribute;
 import example.domain.Classification;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +13,8 @@ import java.util.Map;
 /**
  * @author Pominov Alexander
  */
+@Getter
+@Setter
 public class ChannelClassification extends ColumnProjectionDecorator {
 
     private static final String OBJECT_ROOT_NODE_NAME = "channelClassifications";
@@ -24,22 +28,6 @@ public class ChannelClassification extends ColumnProjectionDecorator {
         super(channelComposition);
         this.onlyFollowingClassifications = onlyFollowingClassifications;
         this.classifications = classifications;
-    }
-
-    public void addClassification(Classification classification) {
-        classifications.add(classification);
-    }
-
-    public List<Classification> getClassifications() {
-        return classifications;
-    }
-
-    public Boolean getOnlyFollowingClassifications() {
-        return onlyFollowingClassifications;
-    }
-
-    public void setOnlyFollowingClassifications(Boolean onlyFollowingClassifications) {
-        this.onlyFollowingClassifications = onlyFollowingClassifications;
     }
 
     @Override

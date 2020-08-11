@@ -1,6 +1,5 @@
 package example.domain.decorator;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,5 +35,14 @@ public class ColumnProjectionDecorator implements ChannelComposition {
     @Override
     public Map<String, Map<String, Object>> getColumnProjection() {
         return channelComposition.getColumnProjection();
+    }
+
+    @Override
+    public String toString() {
+        return "Channel {" +
+                "channelId='" + channelComposition.getChannelId() + '\'' +
+                ", description='" + channelComposition.getDescription() + '\'' +
+                ", columnProjection=" + channelComposition.getColumnProjection() +
+                '}';
     }
 }

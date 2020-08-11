@@ -1,6 +1,8 @@
 package example.domain.decorator;
 
 import example.domain.Products;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +12,8 @@ import java.util.Map;
 /**
  * @author Pominov Alexander
  */
+@Getter
+@Setter
 public class ChannelProducts extends ColumnProjectionDecorator {
 
     private static final String OBJECT_ROOT_NODE_NAME = "channelProducts";

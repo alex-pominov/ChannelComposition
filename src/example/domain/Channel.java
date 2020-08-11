@@ -1,6 +1,7 @@
 package example.domain;
 
 import example.domain.decorator.ChannelComposition;
+import lombok.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,18 +9,14 @@ import java.util.Map;
 /**
  * @author Pominov Alexander
  */
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Channel implements ChannelComposition {
     private String channelId;
     private String description;
-    Map<String, Map<String, Object>> columnProjection = new HashMap<>();
-
-    public Channel(String channelId, String description) {
-        this.channelId = channelId;
-        this.description = description;
-    }
-
-    public Channel() {
-    }
+    private Map<String, Map<String, Object>> columnProjection = new HashMap<>();
 
     @Override
     public Map<String, Map<String, Object>> getColumnProjection() {

@@ -3,6 +3,7 @@ package example;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import example.domain.Attribute;
 import example.domain.Channel;
 import example.domain.Classification;
@@ -45,7 +46,7 @@ public class Main {
         channel = new ChannelAttributes(channel, attributes, false);
 
         // Example of usage own methods of ChannelAttributes instance. So it's flexible.
-        ((ChannelAttributes) channel).addAttribute(new Attribute("added", "added attribute"));
+        ((ChannelAttributes) channel).getAttributes().add(new Attribute("added", "added attribute"));
         ((ChannelAttributes) channel).setOnlyFollowingAttributes(true);
 
         // Wrap Channel with ChannelClassification.
@@ -55,7 +56,9 @@ public class Main {
         channel = new ChannelProducts(channel, products, true);
 
         // Print data as a JSON to overview Nodes structure.
-        ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String json = ow.writeValueAsString(channel);
         System.out.println(json);
     }
